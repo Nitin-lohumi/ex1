@@ -5,7 +5,7 @@ import jwt  from "jsonwebtoken";
 const login = async (req, res) => {
   try {
       const { email, password } = req.body;
-      const user = User.findOne({email});
+      const user = await User.findOne({email});
       const DcryptPass = Bcrypt.compare(password,user.password)
       if(!DcryptPass){
          res.status(409).json({
